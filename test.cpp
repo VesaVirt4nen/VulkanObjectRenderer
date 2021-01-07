@@ -1,10 +1,10 @@
-#include <stdiostream>
+#include <iostream>
 
 
 int main() {
 
-	cout << "TESTING!" << endl;
+	std::cout << "TESTING!" << std::endl;
 	
-	return;
+	return 0;
 	
 }
