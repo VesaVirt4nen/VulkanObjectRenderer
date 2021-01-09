@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-class VulkanObjectRenderer {
+class vulkanObjectRenderer {
 
 public:
 	static void printTest();

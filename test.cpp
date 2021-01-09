@@ -1,10 +1,38 @@
 #include <iostream>
-#include <VulkanObjectRenderer.h>
+#include <exception>
+#include "vulkanObjectRenderer.h"
+#include "utilities.h"
+#include "vertexData.h"
+#include "modelData.h"
+#include <vector>
+void testLoadFiles(){
+	modelData model;
+	
+	try {
+		 model = utilities::loadVerticesFile("test.obj");
+	
+	} catch (const std::exception& e)  {
+		std::cout << e.what() << std::endl;
+	
+	}
+	
+	std::cout << model.vertices.size() << std::endl;
+	utilities::printVertex(model.vertices[0]);
+
+
+}
+
+
+
 
 int main() {
 
 	std::cout << "TESTING!" << std::endl;
-	VulkanObjectRenderer::printTest();
+	vulkanObjectRenderer::printTest();
+	testLoadFiles();
 	return 0;
 	
 }
+
+
+

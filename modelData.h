@@ -1,11 +1,12 @@
-#ifndef MODEL_DATA
-#define MODEL_DATA
+#ifndef MODELDATA
+#define MODELDATA
 
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include <vector>
 
+#include <string>
+#include <vector>
+#include "vertexData.h"
 
 
 class modelData{
@@ -13,11 +14,9 @@ public:
 	std::vector<vertexData> vertices;
 	std::vector<uint32_t> indices;
 	int texHeight, texWidth, texChannels;
-	stbi_uc pixels;
+	stbi_uc* pixels;
 	
-	void loadModel();
-	
-	void loadTexture();
+	void bindTextureFile(std::string fileName);
 };
 
 
