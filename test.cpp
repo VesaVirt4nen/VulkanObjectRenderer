@@ -4,6 +4,7 @@
 #include "utilities.h"
 #include "vertexData.h"
 #include "modelData.h"
+#include "windowManager.h"
 #include <vector>
 void testLoadFiles(){
 	modelData model;
@@ -22,6 +23,15 @@ void testLoadFiles(){
 
 }
 
+void testWindow(){
+	windowManager windowmanager;
+	windowmanager.initializeWindow(800,600);
+	GLFWwindow* window = windowmanager.getWindowPointer();
+	while (!glfwWindowShouldClose(window)) {
+		glfwPollEvents();
+	}
+}
+
 
 
 
@@ -30,6 +40,7 @@ int main() {
 	std::cout << "TESTING!" << std::endl;
 	vulkanObjectRenderer::printTest();
 	testLoadFiles();
+	testWindow();
 	return 0;
 	
 }

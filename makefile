@@ -1,12 +1,12 @@
 COMPILER=g++
-COMPILERFLAGS= -std=c++11  -I/usr/include/stb -I/usr/include/glm
+COMPILERFLAGS= -std=c++11  -I/usr/include/stb -I/usr/include/glm -lglfw
 DEPENDENCIES=
 OBJECTFILES=
 
 .PHONY: buildtest test build clean
 
-buildtest: test.o vulkanObjectRenderer.o utilities.o modelData.o
-	$(COMPILER) test.o -o testbinary vulkanObjectRenderer.o utilities.o  $(COMPILERFLAGS)
+buildtest: test.o vulkanObjectRenderer.o utilities.o modelData.o windowManager.o
+	$(COMPILER) test.o -o testbinary vulkanObjectRenderer.o utilities.o windowManager.o modelData.o  $(COMPILERFLAGS)
 
 test:
 	./testbinary
@@ -22,5 +22,9 @@ utilities.o: utilities.cpp utilities.h
 
 modelData.o: modelData.cpp modelData.h
 	$(COMPILER) -o modelData.o modelData.cpp -c $(COMPILERFLAGS)
+	
+	
+windowManager.o: windowManager.cpp windowManager.h
+	$(COMPILER) -o windowManager.o windowManager.cpp -c $(COMPILERFLAGS)
 clean:
 	rm *.o testbinary -f
