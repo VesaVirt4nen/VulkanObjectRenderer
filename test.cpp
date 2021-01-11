@@ -30,9 +30,14 @@ void testWindow(){
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents();
 	}
+	windowmanager.cleanup();
 }
 
-
+void testInstance(){
+	vulkanObjectRenderer renderer;
+	renderer.initializeVulkan();
+	renderer.cleanup();
+}
 
 
 int main() {
@@ -40,6 +45,7 @@ int main() {
 	std::cout << "TESTING!" << std::endl;
 	vulkanObjectRenderer::printTest();
 	testLoadFiles();
+	testInstance();
 	testWindow();
 	return 0;
 	
