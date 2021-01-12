@@ -4,6 +4,7 @@
 #include "configurationValues.h"
 #include "debugManager.h"
 #include "windowManager.h"
+#include <vector>
 
 class deviceManager {
 public:
@@ -11,8 +12,7 @@ public:
 	VkInstance* getInstancePointer();
 	VkPhysicalDevice* getPhysicalDevicePointer();
 	VkDevice* getLogicalDevicePointer();
-	
-	void cleanup();
+	void cleanup(configurationValues *config);
 	
 private:
 	void pickPhysicalDevice();
@@ -21,9 +21,9 @@ private:
 	void createDebugManager();
 	void createLogicalDevice();
 	
+	std::vector<const char*> getRequiredExtensions(windowManager* windowmanager,configurationValues *config);
 	
-	
-	//debugManager debugmanager;
+	debugManager debugmanager;
 	VkInstance instance;
 
 };
