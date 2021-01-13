@@ -1,5 +1,5 @@
 COMPILER=g++
-COMPILERFLAGS= -std=c++11  -I/usr/include/stb -I/usr/include/glm -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
+COMPILERFLAGS= -std=c++17  -I/usr/include/stb -I/usr/include/glm -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi
 DEPENDENCIES=
 OBJECTFILES=
 

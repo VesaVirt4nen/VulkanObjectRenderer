@@ -4,6 +4,7 @@
 #include "configurationValues.h"
 #include "debugManager.h"
 #include "windowManager.h"
+#include "queueFamilyIndices.h"
 #include <vector>
 
 class deviceManager {
@@ -17,7 +18,8 @@ public:
 private:
 	void pickPhysicalDevice();
 	void createInstance(configurationValues *config, windowManager *windowmanager);
-	
+	bool isDeviceSuitable(VkPhysicalDevice device);
+	queueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
 	void createDebugManager();
 	void createLogicalDevice();
 	
@@ -25,6 +27,6 @@ private:
 	
 	debugManager debugmanager;
 	VkInstance instance;
-
+	VkPhysicalDevice physicaldevice = VK_NULL_HANDLE;
 };
 #endif

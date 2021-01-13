@@ -19,8 +19,6 @@ void vulkanObjectRenderer::initializeVulkan(){
 
 void vulkanObjectRenderer::cleanup(){
 
-	std::cout << "starting cleanup" << std::endl;
 	devicemanager.cleanup(&config);
 	windowmanager.cleanup();
-	std::cout << "cleanup succesful" << std::endl;
 }
