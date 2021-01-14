@@ -52,9 +52,10 @@ VKAPI_ATTR VkBool32 VKAPI_CALL debugManager::debugCallback(
 }
 
 void debugManager::setupDebugMessenger(configurationValues *config,VkInstance *instance){
-	config->pDebugMessengerCreateInfo->pfnUserCallback = debugCallback;
-	
-	if (CreateDebugUtilsMessengerEXT(*instance, config->pDebugMessengerCreateInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
+	VkDebugUtilsMessengerCreateInfoEXT createInfo;
+	configurationValues::populateDebugMessengerCreateInfo(createInfo);
+	createInfo.pfnUserCallback = debugCallback;
+	if (CreateDebugUtilsMessengerEXT(*instance, &createInfo, nullptr, &debugMessenger) != VK_SUCCESS) {
 		throw std::runtime_error("failed to set up debug messenger!");
 	}
 }

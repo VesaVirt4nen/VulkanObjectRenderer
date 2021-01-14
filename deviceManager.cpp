@@ -34,10 +34,11 @@ void deviceManager::createInstance(configurationValues* config, windowManager* w
 		throw std::runtime_error("failed to create instance");
 	}
 	
+	
+	std::cout << "instance creation successful" << std::endl;
 	if(config-> debug){
 		debugmanager.setupDebugMessenger(config, &instance);
 	}
-	std::cout << "instance creation successful" << std::endl;
 }
 
 
@@ -47,14 +48,19 @@ void deviceManager::initializeDevice(configurationValues *config, windowManager*
 	}
 	createInstance(config, windowmanager);
 	pickPhysicalDevice();
+	createLogicalDevice();
 }
 
 
 void deviceManager::cleanup(configurationValues *config){
+	
+	
 	if(config->debug){
 		debugmanager.cleanup(instance);
 	}
+	vkDestroyDevice(device, nullptr);
 	vkDestroyInstance(instance, nullptr);
+	
 }
 
 std::vector<const char*> deviceManager::getRequiredExtensions(windowManager* windowmanager,configurationValues *config) {
@@ -126,6 +132,19 @@ VkPhysicalDevice* deviceManager::getPhysicalDevicePointer(){
 	return &physicaldevice;
 }
 
-
+void deviceManager::createLogicalDevice(){
+	
+	std::vector<VkDeviceQueueCreateInfo> queues;
+queues.push_back(configurationValues::populateQueueCreateInfo(findQueueFamilies(physicaldevice).graphicsFamily.value(),1,1.0f));
+	
+	VkPhysicalDeviceFeatures deviceFeatures{};
+	
+	VkDeviceCreateInfo createInfo{};
+	createInfo = configurationValues::populateDeviceCreateInfo(&queues,&deviceFeatures);
+	
+	if (vkCreateDevice(physicaldevice, &createInfo, nullptr, &device) != VK_SUCCESS) {
+		throw std::runtime_error("failed to create logical device!");
+	}
+}
 
 

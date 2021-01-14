@@ -28,5 +28,6 @@ private:
 	debugManager debugmanager;
 	VkInstance instance;
 	VkPhysicalDevice physicaldevice = VK_NULL_HANDLE;
+	VkDevice device;
 };
 #endif
