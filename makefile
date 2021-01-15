@@ -5,8 +5,8 @@ OBJECTFILES=
 
 .PHONY: buildtest test build clean
 
-buildtest: test.o vulkanObjectRenderer.o utilities.o modelData.o windowManager.o deviceManager.o windowManager.o configurationValues.o debugManager.o
-	$(COMPILER) test.o -o testbinary vulkanObjectRenderer.o utilities.o windowManager.o modelData.o deviceManager.o configurationValues.o debugManager.o $(COMPILERFLAGS)
+buildtest: test.o vulkanObjectRenderer.o utilities.o modelData.o windowManager.o deviceManager.o windowManager.o configurationValues.o debugManager.o queueManager.o
+	$(COMPILER) test.o -o testbinary vulkanObjectRenderer.o utilities.o windowManager.o modelData.o deviceManager.o configurationValues.o debugManager.o queueManager.o $(COMPILERFLAGS)
 
 test:
 	./testbinary
@@ -35,5 +35,7 @@ configurationValues.o: configurationValues.cpp configurationValues.h
 	
 debugManager.o: debugManager.cpp debugManager.h
 	$(COMPILER) -o debugManager.o -c debugManager.cpp $(COMPILERFLAGS)
+queueManager.o: queueManager.cpp queueManager.h
+	$(COMPILER) -o queueManager.o -c queueManager.cpp $(COMPILERFLAGS)
 clean:
 	rm *.o testbinary -f

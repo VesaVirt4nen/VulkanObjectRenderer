@@ -4,6 +4,8 @@
 #include "windowManager.h"
 #include "configurationValues.h"
 #include "deviceManager.h"
+#include "queueManager.h"
+
 
 #include <iostream>
 
@@ -20,6 +22,7 @@ private:
 	VkInstance instance;
 	windowManager windowmanager;
 	deviceManager devicemanager;
+	queueManager queuemanager;
 };
 
 #endif

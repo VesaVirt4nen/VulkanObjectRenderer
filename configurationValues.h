@@ -3,7 +3,8 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 struct configurationValues{
-	
+	int height = 600;
+	int width = 1000;
 	bool debug = true;
 	configurationValues();
 	void static populateDebugMessengerCreateInfo(VkDebugUtilsMessengerCreateInfoEXT& createInfo );

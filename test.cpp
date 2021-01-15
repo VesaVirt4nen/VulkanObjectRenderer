@@ -45,6 +45,7 @@ int main() {
 	std::cout << "TESTING!" << std::endl;
 	vulkanObjectRenderer::printTest();
 	testLoadFiles();
+	testWindow();
 	testInstance();
 	testWindow();
 	return 0;

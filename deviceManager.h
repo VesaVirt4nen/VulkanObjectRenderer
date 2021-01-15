@@ -5,23 +5,24 @@
 #include "debugManager.h"
 #include "windowManager.h"
 #include "queueFamilyIndices.h"
+#include "queueManager.h"
 #include <vector>
 
 class deviceManager {
 public:
-	void initializeDevice(configurationValues *config, windowManager *windowmanager);
+	void initializeDevice(configurationValues *config, windowManager *windowmanager,queueManager &queuemanager);
 	VkInstance* getInstancePointer();
 	VkPhysicalDevice* getPhysicalDevicePointer();
 	VkDevice* getLogicalDevicePointer();
-	void cleanup(configurationValues *config);
+	void cleanup(configurationValues *config, windowManager &windowmanager);
 	
 private:
-	void pickPhysicalDevice();
+	void pickPhysicalDevice(windowManager &windowmanager);
 	void createInstance(configurationValues *config, windowManager *windowmanager);
-	bool isDeviceSuitable(VkPhysicalDevice device);
-	queueFamilyIndices findQueueFamilies(VkPhysicalDevice device);
+	bool isDeviceSuitable(VkPhysicalDevice device,windowManager &windowmanager);
+	queueFamilyIndices findQueueFamilies(VkPhysicalDevice device, windowManager &windowmanager);
 	void createDebugManager();
-	void createLogicalDevice();
+	void createLogicalDevice(queueManager &queuemanager, windowManager &windowmanager);
 	
 	std::vector<const char*> getRequiredExtensions(windowManager* windowmanager,configurationValues *config);
 	
@@ -29,5 +30,6 @@ private:
 	VkInstance instance;
 	VkPhysicalDevice physicaldevice = VK_NULL_HANDLE;
 	VkDevice device;
+	
 };
 #endif

@@ -12,13 +12,12 @@ void vulkanObjectRenderer::printTest(){
 
 void vulkanObjectRenderer::initializeVulkan(){
 	
-	devicemanager.initializeDevice(&config, &windowmanager);
+	devicemanager.initializeDevice(&config, &windowmanager,queuemanager);
 	
-
 }
 
 void vulkanObjectRenderer::cleanup(){
 
-	devicemanager.cleanup(&config);
+	devicemanager.cleanup(&config,windowmanager);
 	windowmanager.cleanup();
 }
